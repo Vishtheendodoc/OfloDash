@@ -9,7 +9,7 @@ st.sidebar.title("Order Flow Controls")
 # Fetch stock list
 @st.cache_data
 def get_stocks():
-    return requests.get("http://localhost:5000/api/stocks").json()
+    return requests.get("https://oflo.onrender.com/api/stocks").json()
 
 stocks = get_stocks()
 stock_options = {f"{s['symbol']} ({s['security_id']})": s['security_id'] for s in stocks}
