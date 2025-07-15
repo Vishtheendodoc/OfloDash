@@ -29,7 +29,7 @@ if 'current_stock' not in st.session_state or reset_data or st.session_state.get
     st.session_state['current_stock'] = selected_id
 
 # --- Fetch Data ---
-url = f"http://localhost:5000/api/delta_data/{selected_id}?interval={interval}"
+url = f"https://oflo.onrender.com/api/delta_data/{selected_id}?interval={interval}"
 try:
     bars = requests.get(url).json()
     df = pd.DataFrame(bars)
