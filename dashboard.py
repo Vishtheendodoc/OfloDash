@@ -11,7 +11,7 @@ st.sidebar.title("Order Flow Controls")
 @st.cache_data
 def get_stocks():
     try:
-        response = requests.get("http://localhost:5000/api/stocks", timeout=10)
+        response = requests.get("https://oflo.onrender.com/api/stocks", timeout=10)
         response.raise_for_status()
         return response.json()
     except Exception as e:
@@ -46,7 +46,7 @@ if 'current_interval' not in st.session_state:
 # --- Fetch Data with improved error handling ---
 def fetch_delta_data(security_id, interval):
     """Fetch delta data with proper error handling and validation"""
-    url = f"http://localhost:5000/api/delta_data/{security_id}?interval={interval}"
+    url = f"https://oflo.onrender.com/api/delta_data/{security_id}?interval={interval}"
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
