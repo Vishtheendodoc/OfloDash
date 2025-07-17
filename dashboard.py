@@ -35,7 +35,7 @@ stock_options = {f"{s['symbol']} ({s['security_id']})": s['security_id'] for s i
 selected_label = st.sidebar.selectbox("Select Stock", list(stock_options.keys()))
 selected_id = stock_options[selected_label]
 interval = st.sidebar.selectbox("Interval (minutes)", [1, 3, 5, 15, 20, 30])
-auto_refresh = st.sidebar.checkbox("Auto-refresh (5s)", value=True)
+auto_refresh = st.sidebar.checkbox("Auto-refresh (30s)", value=True)
 
 # Data management buttons
 col1, col2 = st.sidebar.columns(2)
@@ -51,7 +51,7 @@ max_records = st.sidebar.slider("Max records per stock", 1000, 50000, 10000)
 
 # --- Auto-refresh ---
 if auto_refresh:
-    st_autorefresh(interval=5000, key="datarefresh")
+    st_autorefresh(interval=30000, key="datarefresh")
 
 # --- Initialize Session State ---
 if 'persistent_data' not in st.session_state:
