@@ -111,6 +111,8 @@ def aggregate_data_by_interval(df, interval_minutes):
     # Calculate tick delta and inference if tick data exists
     if 'buy_initiated' in aggregated.columns:
         aggregated['tick_delta'] = aggregated['buy_initiated'] - aggregated['sell_initiated']
+        # Add cumulative tick delta
+        aggregated['cumulative_tick_delta'] = aggregated['tick_delta'].cumsum()
         # Simple inference logic
         aggregated['inference'] = aggregated['tick_delta'].apply(
             lambda x: 'Buy Dominant' if x > 0 else ('Sell Dominant' if x < 0 else 'Neutral')
