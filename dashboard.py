@@ -318,14 +318,14 @@ if not display_data.empty:
             st.plotly_chart(fig, use_container_width=True)
             
             # Add explanation
-            st.caption("""
-            📊 **Chart Legend:**
-            - **Green triangles ▲**: Buy dominant periods
-            - **Red triangles ▼**: Sell dominant periods  
-            - **B: [number]**: Buy initiated volume (above candles)
-            - **S: [number]**: Sell initiated volume (below candles)
-            - **Δ[+/-number]**: Net tick delta inside candles
-            """)
+            #st.caption("""
+            #📊 **Chart Legend:**
+            #- **Green triangles ▲**: Buy dominant periods
+            #- **Red triangles ▼**: Sell dominant periods  
+            #- **B: [number]**: Buy initiated volume (above candles)
+            #- **S: [number]**: Sell initiated volume (below candles)
+            #- **Δ[+/-number]**: Net tick delta inside candles
+            #""")
 
     # --- Alternative: Volume Bar Chart Overlay ---
     if st.checkbox("Show Volume Bar Overlay", value=False):
