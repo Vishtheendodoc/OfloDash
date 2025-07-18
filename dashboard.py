@@ -406,11 +406,16 @@ if not display_data.empty:
     #st.subheader("Cumulative Delta")
     #st.line_chart(display_data.set_index('timestamp')['cumulative_delta'])
 
+    # Add Cumulative Tick Delta Chart
+    if 'cumulative_tick_delta' in display_data.columns:
+        st.subheader("Cumulative Tick Delta")
+        st.line_chart(display_data.set_index('timestamp')['cumulative_tick_delta'])
+        
     # Data Table & Download - Now using display_data
     st.subheader("Raw Data")
     # Show all columns including tick-rule order flow
     display_cols = [
-        'timestamp', 'buy_initiated', 'sell_initiated', 'tick_delta', 'inference', 'buy_volume', 'sell_volume', 'delta', 'cumulative_delta'
+        'timestamp', 'buy_initiated', 'sell_initiated', 'tick_delta', 'inference', 'cumulative_tick_delta', 'buy_volume', 'sell_volume', 'delta', 'cumulative_delta'
         
     ]
     display_cols = [col for col in display_cols if col in display_data.columns]
