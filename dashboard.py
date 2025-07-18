@@ -410,9 +410,67 @@ if not display_data.empty:
     #st.line_chart(display_data.set_index('timestamp')['cumulative_delta'])
 
     # Add Cumulative Tick Delta Chart
+    # Replace the existing "Cumulative Tick Delta" section with this:
     if 'cumulative_tick_delta' in display_data.columns:
         st.subheader("Cumulative Tick Delta")
-        st.line_chart(display_data.set_index('timestamp')['cumulative_tick_delta'])
+        
+        # Create a plotly chart instead of st.line_chart
+        fig_tick_delta = go.Figure()
+        
+        # Prepare data
+        tick_data = display_data.set_index('timestamp')['cumulative_tick_delta']
+        
+        # Add trace with conditional coloring
+        fig_tick_delta.add_trace(go.Scatter(
+            x=tick_data.index,
+            y=tick_data.values,
+            mode='lines',
+            line=dict(
+                width=4,  # Thick line
+                color='red'  # Default color, will be overridden by conditional coloring
+            ),
+            name='Cumulative Tick Delta',
+            hovertemplate='Time: %{x}<br>Value: %{y}<extra></extra>'
+        ))
+        
+        # Add conditional coloring by creating separate traces for positive and negative values
+        fig_tick_delta.data = []  # Clear the previous trace
+        
+        # Split data into positive and negative segments
+        for i in range(len(tick_data)):
+            if i == 0:
+                continue
+                
+            prev_val = tick_data.iloc[i-1]
+            curr_val = tick_data.iloc[i]
+            
+            # Determine color based on current value
+            color = '#26a69a' if curr_val >= 0 else '#ef5350'  # Green if >= 0, Red if < 0
+            
+            fig_tick_delta.add_trace(go.Scatter(
+                x=[tick_data.index[i-1], tick_data.index[i]],
+                y=[prev_val, curr_val],
+                mode='lines',
+                line=dict(width=4, color=color),
+                showlegend=False,
+                hovertemplate='Time: %{x}<br>Value: %{y}<extra></extra>'
+            ))
+        
+        # Add zero line for reference
+        fig_tick_delta.add_hline(y=0, line_dash="dash", line_color="gray", line_width=1)
+        
+        # Update layout
+        fig_tick_delta.update_layout(
+            height=400,
+            xaxis_title='Time',
+            yaxis_title='Cumulative Tick Delta',
+            showlegend=False,
+            plot_bgcolor='white',
+            xaxis=dict(gridcolor='lightgray', gridwidth=0.5),
+            yaxis=dict(gridcolor='lightgray', gridwidth=0.5)
+        )
+        
+        st.plotly_chart(fig_tick_delta, use_container_width=True)
         
     # Data Table & Download - Now using display_data
     st.subheader("Raw Data")
