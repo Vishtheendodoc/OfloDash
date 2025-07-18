@@ -6,6 +6,9 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import time
 
+# Streamlit Page Configuration
+st.set_page_config(layout="wide")
+
 # --- Session State Initialization ---
 if 'persistent_data' not in st.session_state:
     st.session_state['persistent_data'] = {}
