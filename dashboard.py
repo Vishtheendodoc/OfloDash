@@ -395,14 +395,14 @@ if not display_data.empty:
             
             st.plotly_chart(fig_vol, use_container_width=True)
     # Charts - Now using display_data instead of st.session_state['all_data']
-    st.subheader("Buy & Sell Volume")
-    st.line_chart(display_data.set_index('timestamp')[['buy_volume', 'sell_volume']])
+    #st.subheader("Buy & Sell Volume")
+    #st.line_chart(display_data.set_index('timestamp')[['buy_volume', 'sell_volume']])
 
-    st.subheader("Delta (Buy - Sell)")
-    st.bar_chart(display_data.set_index('timestamp')['delta'])
+    #st.subheader("Delta (Buy - Sell)")
+    #st.bar_chart(display_data.set_index('timestamp')['delta'])
 
-    st.subheader("Cumulative Delta")
-    st.line_chart(display_data.set_index('timestamp')['cumulative_delta'])
+    #st.subheader("Cumulative Delta")
+    #st.line_chart(display_data.set_index('timestamp')['cumulative_delta'])
 
     # Data Table & Download - Now using display_data
     st.subheader("Raw Data")
