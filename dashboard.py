@@ -408,8 +408,8 @@ if not display_data.empty:
     st.subheader("Raw Data")
     # Show all columns including tick-rule order flow
     display_cols = [
-        'timestamp', 'buy_volume', 'sell_volume', 'delta', 'cumulative_delta',
-        'buy_initiated', 'sell_initiated', 'tick_delta', 'inference'
+        'buy_initiated', 'sell_initiated', 'tick_delta', 'inference', 'timestamp', 'buy_volume', 'sell_volume', 'delta', 'cumulative_delta'
+        
     ]
     display_cols = [col for col in display_cols if col in display_data.columns]
     st.dataframe(display_data[display_cols])
