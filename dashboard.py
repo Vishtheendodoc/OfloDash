@@ -239,7 +239,7 @@ if not display_data.empty:
                 if 'tick_delta' in ohlc_df.columns and pd.notna(row['tick_delta']):
                     delta_val = int(row['tick_delta'])
                     if abs(delta_val) > 0:  # Only show if there's a net difference
-                        delta_color = '#26a69a' if delta_val > 0 else '#ef5350'
+                        delta_color = 'black'
                         fig.add_trace(go.Scatter(
                             x=[row['timestamp']],
                             y=[candle_mid],
